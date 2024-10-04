@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import Button from "@/src/components/Button";
 
 export default function CreatePost() {
   const [caption, setCaption] = useState("");
@@ -21,8 +22,6 @@ export default function CreatePost() {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
@@ -34,7 +33,6 @@ export default function CreatePost() {
       {image ? (
         <Image
           source={{
-            // uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
             uri: image,
           }}
           className="w-52 aspect-[3/4] rounded-lg bg-slate-300"
@@ -56,10 +54,8 @@ export default function CreatePost() {
       />
 
       {/* Button */}
-      <View className="mt-72 w-full">
-        <Pressable className="bg-blue-500 w-full p-3 items-center rounded-md">
-          <Text className="text-white front-semibold">Share</Text>
-        </Pressable>
+      <View className="flex-grow justify-end mt-auto w-full">
+        <Button title="Share" />
       </View>
     </View>
   );
